@@ -42,4 +42,29 @@ class IndexController extends Controller
         }
     }
 
+    public function logical(Request $request)
+    {
+        $s = $request->query('s');
+        $length = strlen($s);
+        if ($length < 1 || $length > 10000) dd(false);
+
+        $stack = [];
+        $openBrackets = ['(', '{', '['];
+        $closeBrackets = [')', '}', ']'];
+        $characters = str_split($s);
+
+        foreach ($characters as $char) {
+            if (in_array($char, $openBrackets)) {
+                array_push($stack, $char);
+            } elseif (in_array($char, $closeBrackets)) {
+                $lastBracket = array_pop($stack);
+                if ($lastBracket === null || array_search($lastBracket, $openBrackets) !== array_search($char, $closeBrackets)) {
+                    dd(false);
+                }
+            }
+        }
+
+        return empty($stack) ? dd(true) : dd(false);
+    }
+
 }

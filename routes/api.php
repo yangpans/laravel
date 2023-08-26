@@ -36,4 +36,7 @@ Route::prefix('web')
 
             //GET method. Throw an unexpected error.
             Route::get('unexpected', 'unexpected')->name('unexpected');
+
+            //GET method. Use the URL query 's' for the logical test below.
+            Route::get('logical', 'logical')->name('logical');
         });
