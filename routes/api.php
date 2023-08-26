@@ -26,4 +26,7 @@ Route::prefix('web')
         function () {
             Route::get('index', 'index')
                 ->name('index');
+
+            Route::get('update', 'update')
+                ->name('update');
         });
