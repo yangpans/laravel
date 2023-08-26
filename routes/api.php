@@ -24,9 +24,16 @@ Route::prefix('web')
     ->controller(IndexController::class)
     ->group(
         function () {
-            Route::get('index', 'index')
-                ->name('index');
+            Route::get('index', 'index')->name('index');
 
-            Route::get('update', 'update')
-                ->name('update');
+            Route::get('update', 'update')->name('update');
+
+            //GET method. Return the request content.
+            Route::get('content', 'content')->name('content');
+
+            //GET method. Throw an expected error, such as validation exception.
+            Route::get('validation', 'validation')->name('validation');
+
+            //GET method. Throw an unexpected error.
+            Route::get('unexpected', 'unexpected')->name('unexpected');
         });
